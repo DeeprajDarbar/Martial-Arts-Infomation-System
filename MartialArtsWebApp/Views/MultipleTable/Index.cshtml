@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>Data</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <table border="1">
+            <tr>
+                <th>Student Name</th>
+                <th>Student Email</th>
+                <th>Student PhoneNumber</th>
+                <th>Student's FatherName</th>
+                <th>Student's MotherName</th>
+                <th>Student's Rank</th>
+            </tr>
+            @foreach (var item in ViewData["jointables"] as IEnumerable<MartialArtsWebApp.Models.MultipleTableJoin>)
+            {
+                <tr>
+                    <td>@item.students.StudentName</td>
+                    <td>@item.students.Student_Email</td>
+                    <td>@item.students.Student_Phone</td>
+                    <td>@item.parents.Father_Name</td>
+                    <td>@item.parents.Mother_Name</td>
+                    <td>@item.rankDetails.Rank.Rank_Name</td>
+                </tr>
+            }
+        </table>
+</div>

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MartialArtsWebApp.Models.Inventory>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm())
+{
+    <p>
+        Find by Product name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) <br /><br />
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_SellPrice)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_Desc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_SellPrice)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.InventoryID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.InventoryID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.InventoryID })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MarsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ClassTimings">
+    <Key>
+      <PropertyRef Name="ClassID" />
+    </Key>
+    <Property Name="ClassID" Type="int" Nullable="false" />
+    <Property Name="Class_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Class_Day" Type="varchar" MaxLength="50" />
+    <Property Name="Class_Time" Type="time" Precision="7" />
+    <Property Name="Class_Level" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="InventoryID" />
+    </Key>
+    <Property Name="InventoryID" Type="int" Nullable="false" />
+    <Property Name="Product_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Product_Desc" Type="varchar" MaxLength="50" />
+    <Property Name="Product_Cost" Type="int" />
+    <Property Name="Product_SellPrice" Type="int" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="int" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MembershipType">
+    <Key>
+      <PropertyRef Name="MembershipID" />
+    </Key>
+    <Property Name="MembershipID" Type="int" Nullable="false" />
+    <Property Name="Membership_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Membership_Fee" Type="int" />
+  </EntityType>
+  <EntityType Name="Parent">
+    <Key>
+      <PropertyRef Name="ParentID" />
+    </Key>
+    <Property Name="ParentID" Type="int" Nullable="false" />
+    <Property Name="StudentID" Type="int" />
+    <Property Name="Mother_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Father_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Parent_Email" Type="varchar" MaxLength="50" />
+    <Property Name="isStudent" Type="bit" />
+  </EntityType>
+  <EntityType Name="Ranks">
+    <Key>
+      <PropertyRef Name="RankID" />
+    </Key>
+    <Property Name="RankID" Type="int" Nullable="false" />
+    <Property Name="Rank_Name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="int" Nullable="false" />
+    <Property Name="StudentName" Type="varchar" MaxLength="50" />
+    <Property Name="DateOfBirth" Type="date" />
+    <Property Name="DateOfJoining" Type="date" />
+    <Property Name="Student_Phone" Type="int" />
+    <Property Name="Student_Email" Type="varchar" MaxLength="50" />
+    <Property Name="Student_Address" Type="varchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="isAdult" Type="bit" />
+  </EntityType>
+  <EntityType Name="StudentAttendence">
+    <Key>
+      <PropertyRef Name="Attendence_ID" />
+    </Key>
+    <Property Name="Attendence_ID" Type="int" Nullable="false" />
+    <Property Name="StudentID" Type="int" />
+    <Property Name="Student_datetime" Type="datetime" />
+    <Property Name="ClassID" Type="int" />
+  </EntityType>
+  <EntityType Name="StudentFees">
+    <Key>
+      <PropertyRef Name="StudentFeeID" />
+    </Key>
+    <Property Name="StudentFeeID" Type="int" Nullable="false" />
+    <Property Name="StudentID" Type="int" />
+    <Property Name="TestID" Type="int" />
+    <Property Name="MembershipID" Type="int" />
+    <Property Name="InventoryID" Type="int" />
+    <Property Name="StudentFee_datetime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StudentRankDetails">
+    <Key>
+      <PropertyRef Name="StudentRankDetialID" />
+    </Key>
+    <Property Name="StudentRankDetialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentID" Type="int" />
+    <Property Name="RankID" Type="int" />
+  </EntityType>
+  <EntityType Name="TestFees">
+    <Key>
+      <PropertyRef Name="TestID" />
+    </Key>
+    <Property Name="TestID" Type="int" Nullable="false" />
+    <Property Name="TestFees" Type="int" />
+    <Property Name="RankID" Type="int" />
+  </EntityType>
+  <Association Name="FK_Parent_student">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="Parent" Type="Self.Parent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Parent">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentAttendence_ClassTimings">
+    <End Role="ClassTimings" Type="Self.ClassTimings" Multiplicity="0..1" />
+    <End Role="StudentAttendence" Type="Self.StudentAttendence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClassTimings">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="StudentAttendence">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentAttendence_student">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="StudentAttendence" Type="Self.StudentAttendence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="StudentAttendence">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFees_Inventory">
+    <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
+    <End Role="StudentFees" Type="Self.StudentFees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inventory">
+        <PropertyRef Name="InventoryID" />
+      </Principal>
+      <Dependent Role="StudentFees">
+        <PropertyRef Name="InventoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFees_MembershipType">
+    <End Role="MembershipType" Type="Self.MembershipType" Multiplicity="0..1" />
+    <End Role="StudentFees" Type="Self.StudentFees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MembershipType">
+        <PropertyRef Name="MembershipID" />
+      </Principal>
+      <Dependent Role="StudentFees">
+        <PropertyRef Name="MembershipID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFees_student">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="StudentFees" Type="Self.StudentFees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="StudentFees">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentFees_TestFees">
+    <End Role="TestFees" Type="Self.TestFees" Multiplicity="0..1" />
+    <End Role="StudentFees" Type="Self.StudentFees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestFees">
+        <PropertyRef Name="TestID" />
+      </Principal>
+      <Dependent Role="StudentFees">
+        <PropertyRef Name="TestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentRankDetails_Ranks">
+    <End Role="Ranks" Type="Self.Ranks" Multiplicity="0..1" />
+    <End Role="StudentRankDetails" Type="Self.StudentRankDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ranks">
+        <PropertyRef Name="RankID" />
+      </Principal>
+      <Dependent Role="StudentRankDetails">
+        <PropertyRef Name="RankID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentRankDetails_student">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="StudentRankDetails" Type="Self.StudentRankDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="StudentRankDetails">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestFees_Ranks">
+    <End Role="Ranks" Type="Self.Ranks" Multiplicity="0..1" />
+    <End Role="TestFees" Type="Self.TestFees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ranks">
+        <PropertyRef Name="RankID" />
+      </Principal>
+      <Dependent Role="TestFees">
+        <PropertyRef Name="RankID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MarsModelStoreContainer">
+    <EntitySet Name="ClassTimings" EntityType="Self.ClassTimings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MembershipType" EntityType="Self.MembershipType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ranks" EntityType="Self.Ranks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentAttendence" EntityType="Self.StudentAttendence" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentFees" EntityType="Self.StudentFees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentRankDetails" EntityType="Self.StudentRankDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TestFees" EntityType="Self.TestFees" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Parent_student" Association="Self.FK_Parent_student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Parent" EntitySet="Parent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentAttendence_ClassTimings" Association="Self.FK_StudentAttendence_ClassTimings">
+      <End Role="ClassTimings" EntitySet="ClassTimings" />
+      <End Role="StudentAttendence" EntitySet="StudentAttendence" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentAttendence_student" Association="Self.FK_StudentAttendence_student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StudentAttendence" EntitySet="StudentAttendence" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFees_Inventory" Association="Self.FK_StudentFees_Inventory">
+      <End Role="Inventory" EntitySet="Inventory" />
+      <End Role="StudentFees" EntitySet="StudentFees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFees_MembershipType" Association="Self.FK_StudentFees_MembershipType">
+      <End Role="MembershipType" EntitySet="MembershipType" />
+      <End Role="StudentFees" EntitySet="StudentFees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFees_student" Association="Self.FK_StudentFees_student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StudentFees" EntitySet="StudentFees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentFees_TestFees" Association="Self.FK_StudentFees_TestFees">
+      <End Role="TestFees" EntitySet="TestFees" />
+      <End Role="StudentFees" EntitySet="StudentFees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentRankDetails_Ranks" Association="Self.FK_StudentRankDetails_Ranks">
+      <End Role="Ranks" EntitySet="Ranks" />
+      <End Role="StudentRankDetails" EntitySet="StudentRankDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentRankDetails_student" Association="Self.FK_StudentRankDetails_student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StudentRankDetails" EntitySet="StudentRankDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestFees_Ranks" Association="Self.FK_TestFees_Ranks">
+      <End Role="Ranks" EntitySet="Ranks" />
+      <End Role="TestFees" EntitySet="TestFees" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

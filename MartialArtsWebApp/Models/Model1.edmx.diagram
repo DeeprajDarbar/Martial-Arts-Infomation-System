@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ffc514a79d2245f080a102c2e5f9feb7" Name="Diagram1">
+        <EntityTypeShape EntityType="MarsModel.ClassTiming" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarsModel.Inventory" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarsModel.Login" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarsModel.MembershipType" Width="1.5" PointX="3.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarsModel.Parent" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarsModel.Rank" Width="1.5" PointX="1.5" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarsModel.Student" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarsModel.StudentAttendence" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarsModel.StudentFee" Width="1.5" PointX="6" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarsModel.StudentRankDetail" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MarsModel.TestFee" Width="1.5" PointX="3.75" PointY="16.25" IsExpanded="true" />
+        <AssociationConnector Association="MarsModel.FK_StudentAttendence_ClassTimings" ManuallyRouted="false" />
+        <AssociationConnector Association="MarsModel.FK_StudentFees_Inventory" ManuallyRouted="false" />
+        <AssociationConnector Association="MarsModel.FK_StudentFees_MembershipType" ManuallyRouted="false" />
+        <AssociationConnector Association="MarsModel.FK_Parent_student" ManuallyRouted="false" />
+        <AssociationConnector Association="MarsModel.FK_StudentRankDetails_Ranks" ManuallyRouted="false" />
+        <AssociationConnector Association="MarsModel.FK_TestFees_Ranks" ManuallyRouted="false" />
+        <AssociationConnector Association="MarsModel.FK_StudentAttendence_student" ManuallyRouted="false" />
+        <AssociationConnector Association="MarsModel.FK_StudentFees_student" ManuallyRouted="false" />
+        <AssociationConnector Association="MarsModel.FK_StudentRankDetails_student" ManuallyRouted="false" />
+        <AssociationConnector Association="MarsModel.FK_StudentFees_TestFees" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Student Martial Art</title>
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/")css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/")css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/")css/component.css" />
+    <script src="@Url.Content("~/Content/")js/modernizr.custom.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container">
+        <ul id="gn-menu" class="gn-menu-main">
+            <li class="gn-trigger">
+                <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+                <nav class="gn-menu-wrapper">
+                    <div class="gn-scroller">
+                        <ul class="gn-menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home",null, new { @class = "gn-icon gn-icon-article" })</li>
+                            <li>@Html.ActionLink("Student", "Index", "Students", null, new { @class = "gn-icon gn-icon-article" })</li>
+                            <li>@Html.ActionLink("Inevntory", "Index", "Inventories", null, new { @class = "gn-icon gn-icon-article" })</li>
+                            <li>@Html.ActionLink("Class Timings", "Index", "ClassTimings", null, new { @class = "gn-icon gn-icon-article" })</li>
+                            <li>@Html.ActionLink("Membership Type", "Index", "MembershipTypes", null, new { @class = "gn-icon gn-icon-article" })</li>
+                            <li>@Html.ActionLink("Parent", "Index", "Parents", null, new { @class = "gn-icon gn-icon-article" })</li>
+                            <li>@Html.ActionLink("Rank", "Index", "Ranks", null, new { @class = "gn-icon gn-icon-article" })</li>
+                            <li>@Html.ActionLink("Student Attendence", "Index", "StudentAttendences", null, new { @class = "gn-icon gn-icon-article" })</li>
+                            <li>@Html.ActionLink("Student Fees", "Index", "StudentFees", null, new { @class = "gn-icon gn-icon-article" })</li>
+                            <li>@Html.ActionLink("Student Rank", "Index", "StudentRankDetails", null, new { @class = "gn-icon gn-icon-article" })</li>
+                            <li>@Html.ActionLink("Test Fees", "Index", "TestFees", new { @class = "gn-icon gn-icon-article" })</li>
+                        </ul>
+                    </div><!-- /gn-scroller -->
+                </nav>
+            </li>
+            <li></li>
+        </ul>
+    </div><!-- /container -->
+    <script src="@Url.Content("~/Content/")js/classie.js"></script>
+    <script src="@Url.Content("~/Content/")js/gnmenu.js"></script>
+    <script>
+        new gnMenu(document.getElementById('gn-menu'));
+    </script>
+    <!--<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!--@Html.ActionLink("Martial Art", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="gn-icon gn-icon-article">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Student", "Index", "Students")</li>
+                    <li>@Html.ActionLink("Inevntory", "Index", "Inventories")</li>
+                    <li>@Html.ActionLink("Class Timings", "Index", "ClassTimings")</li>
+                    <li>@Html.ActionLink("Membership Type", "Index", "MembershipTypes")</li>
+                    <li>@Html.ActionLink("Parent", "Index", "Parents")</li>
+                    <li>@Html.ActionLink("Rank", "Index", "Ranks")</li>
+                    <li>@Html.ActionLink("Student Attendence", "Index", "StudentAttendences")</li>
+                    <li>@Html.ActionLink("Student Fees", "Index", "StudentFees")</li>
+                    <li>@Html.ActionLink("Student Rank", "Index", "StudentRankDetails")</li>
+                    <li>@Html.ActionLink("Test Fees", "Index", "TestFees")</li>
+                </ul>
+            </div>
+        </div>
+    </div>-->
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>2019 - Martial Arts School</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
